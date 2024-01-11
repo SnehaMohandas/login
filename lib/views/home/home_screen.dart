@@ -15,14 +15,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  final SaleController saleController = Get.put(SaleController());
-
   final NetworkController networkController = Get.find<NetworkController>();
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (networkController.isConnected.value) {
+        final SaleController saleController = Get.put(SaleController());
         return PopScope(
           canPop: false,
           onPopInvoked: (didPop) {
@@ -86,6 +85,9 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
+                  const Divider(
+                    thickness: 0.5,
+                  ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
                     child: TextFormField(
@@ -109,12 +111,10 @@ class HomeScreen extends StatelessWidget {
                   ),
                   Obx(
                     () => saleController.isLoading.value == true
-                        ? Expanded(
-                            child: Container(
-                              child: const Center(
-                                child: CircularProgressIndicator(
-                                  color: ColorConstant.blue,
-                                ),
+                        ? const Expanded(
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                color: ColorConstant.blue,
                               ),
                             ),
                           )
@@ -130,7 +130,12 @@ class HomeScreen extends StatelessWidget {
                                       onPressed: () {
                                         saleController.loadNextPage();
                                       },
-                                      child: const Text("Next"),
+                                      style: ButtonStyle(
+                                        backgroundColor: MaterialStateProperty
+                                            .all<Color>(ColorConstant.blue
+                                                ),
+                                      ),
+                                      child: const Text("Next",style: TextStyle(color: ColorConstant.white),),
                                     );
                                   } else {
                                     return const SizedBox.shrink();

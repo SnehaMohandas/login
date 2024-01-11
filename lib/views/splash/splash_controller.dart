@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SplashController extends GetxController {
   splashOn() async {
     Future.delayed(
-      const Duration(seconds: 6),
+      const Duration(seconds: 2),
       () async {
         token = await getSavedKey('token');
 

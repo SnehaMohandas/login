@@ -8,7 +8,7 @@ import 'package:log_in/views/login/login_controller.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  final LoginController loginController = Get.put(LoginController());
+  
   final NetworkController networkController = Get.find<NetworkController>();
 
   final userNameController = TextEditingController();
@@ -19,10 +19,14 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       if (networkController.isConnected.value) {
+        final LoginController loginController = Get.put(LoginController());
         return Container(
           decoration: BoxDecoration(
-              color: Colors.white,
-              image: DecorationImage(image: AssetImage(AssetImages.backgrnd))),
+            color: Colors.white,
+            image: DecorationImage(
+              image: AssetImage(AssetImages.backgrnd),
+            ),
+          ),
           child: Scaffold(
             backgroundColor: Colors.transparent,
             body: SafeArea(
@@ -56,8 +60,8 @@ class LoginScreen extends StatelessWidget {
                           ),
                           Column(
                             children: [
-                              const SizedBox(
-                                height: 100,
+                               SizedBox(
+                                height: MediaQuery.of(context).size.height*0.22,
                               ),
                               const Text("Login",
                                   style: TextStyle(
@@ -209,16 +213,16 @@ class LoginScreen extends StatelessWidget {
                                       color: ColorConstant.blue,
                                       borderRadius: BorderRadius.circular(25)),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Obx(
                                       () => loginController.isLoading.value ==
                                               true
-                                          ? Center(
+                                          ? const Center(
                                               child: CircularProgressIndicator(
                                                 color: ColorConstant.white,
                                               ),
                                             )
-                                          : Row(
+                                          : const Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
@@ -242,9 +246,13 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
+                              ),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height*0.16,
                               )
                             ],
                           ),
+
                           const Column(
                             children: [
                               Text("Don’t have an Account?",

@@ -42,7 +42,7 @@ Widget SaleItems(context, invoiceNo, status, customerName, amount) {
                 "${customerName}",
                 style: const TextStyle(
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
               Row(

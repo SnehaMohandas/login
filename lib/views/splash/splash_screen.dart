@@ -5,13 +5,14 @@ import 'package:log_in/views/splash/splash_controller.dart';
 
 class SplashScreen extends StatelessWidget {
   SplashScreen({super.key});
-  var splashController = Get.put(SplashController());
+ 
   final NetworkController networkController = Get.put(NetworkController());
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (networkController.isConnected.value) {
+         final SplashController splashController = Get.put(SplashController());
         return Scaffold(
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
